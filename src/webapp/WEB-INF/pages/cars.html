@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Start</title>
+</head>
+<body>
+<h1>Start Car</h1>
+<table>
+    <tr>
+        <td>
+            <a href="/spring_mvc_war/cars?count=1">Get 1 car</a>
+            <br><br>
+            <a href="/spring_mvc_war/cars?count=2">Get 2 car</a>
+            <br><br>
+            <a href="/spring_mvc_war/cars?count=3">Get 3 car</a>
+            <br><br>
+            <a href="/spring_mvc_war/cars?count=4">Get 4 car</a>
+            <br><br>
+            <a href="/spring_mvc_war/cars?count=5">Get 5 car</a>
+            <br><br>
+            <a href="/spring_mvc_war/cars?count=6">Get 6 car</a>
+            <br><br>
+            <a href="/spring_mvc_war/cars">Get cars</a>
+        </td>
+        <td>
+            <table>
+                <tr>
+                    <th>MODEL</th>
+                    <th>YEAR</th>
+                    <th>COLOR</th>
+                </tr>
+                <tr th:each="car : ${cars}">
+                    <td th:text="${car.model}"></td>
+                    <td th:text="${car.year}"></td>
+                    <td th:text="${car.color}"></td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>
