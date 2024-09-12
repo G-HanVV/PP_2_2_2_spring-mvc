@@ -14,16 +14,6 @@ import java.util.List;
 @RequestMapping("/cars")
 public class CarsController {
     final CarService carService;
-    private List<Car> carList;
-    {
-        carList = List.of(
-                new Car("Car1", 1991, "blue"),
-                new Car("Car2", 1992, "red"),
-                new Car("Car3", 1993, "yellow"),
-                new Car("Car4", 1994, "green"),
-                new Car("Car5", 1995, "brown")
-        );
-    }
 
     public CarsController(CarService carService) {
         this.carService = carService;
@@ -31,11 +21,6 @@ public class CarsController {
 
     @GetMapping(value = "")
     public String startCar(@RequestParam(required = false) String count, ModelMap model){
-//        List<Car> cars = carList.stream()
-//                .limit(Integer.parseInt(count == null ? String.valueOf(carList.size()) : count))
-//                .toList();
-//        List<Car> cars = carService.getCars(count);
-
         model.addAttribute("cars", carService.getCars(count));
         return "cars";
     }

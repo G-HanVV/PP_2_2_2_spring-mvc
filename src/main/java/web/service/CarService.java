@@ -8,6 +8,7 @@ import java.util.List;
 @Service
 public class CarService {
     private List<Car> carList;
+
     {
         carList = List.of(
                 new Car("Car1", 1991, "blue"),
@@ -18,11 +19,7 @@ public class CarService {
         );
     }
 
-
     public List<Car> getCars(String count) {
-//        return carList.stream()
-//                .limit(Integer.parseInt(count == null ? String.valueOf(carList.size()) : count))
-//                .toList();
-        return carList.subList(0, Math.min(count == null ? carList.size() : Integer.parseInt(count), carList.size()));
+        return carList.subList(0, count == null ? carList.size() : Math.min(Integer.parseInt(count), carList.size()));
     }
 }
