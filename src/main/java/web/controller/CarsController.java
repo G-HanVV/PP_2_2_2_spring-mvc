@@ -6,12 +6,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import web.model.Car;
+import web.service.CarService;
 
 import java.util.List;
 
 @Controller
 @RequestMapping("/cars")
 public class CarsController {
+    final CarService carService;
     private List<Car> carList;
     {
         carList = List.of(
@@ -23,12 +25,18 @@ public class CarsController {
         );
     }
 
+    public CarsController(CarService carService) {
+        this.carService = carService;
+    }
+
     @GetMapping(value = "")
     public String startCar(@RequestParam(required = false) String count, ModelMap model){
-        model.addAttribute("cars",
-                carList.stream()
-                        .limit(Integer.parseInt(count == null ? String.valueOf(carList.size()) : count))
-                        .toList());
+//        List<Car> cars = carList.stream()
+//                .limit(Integer.parseInt(count == null ? String.valueOf(carList.size()) : count))
+//                .toList();
+//        List<Car> cars = carService.getCars(count);
+
+        model.addAttribute("cars", carService.getCars(count));
         return "cars";
     }
 }
